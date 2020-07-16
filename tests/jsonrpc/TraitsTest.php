@@ -9,6 +9,7 @@ use extas\interfaces\http\IHasJsonRpcRequest;
 use extas\interfaces\http\IHasJsonRpcResponse;
 use extas\interfaces\jsonrpc\IRequest;
 use extas\interfaces\jsonrpc\IResponse;
+use extas\interfaces\jsonrpc\responses\IError;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -54,9 +55,9 @@ class TraitsTest extends TestCase
         $response = $this->getJsonRpcResponse($item->successResponse('id', ['test' => 'is ok']));
         $this->assertEquals(
             [
-                IResponse::RESPONSE__ID => 'id',
-                IResponse::RESPONSE__VERSION => IResponse::VERSION_CURRENT,
-                IResponse::RESPONSE__RESULT => ['test' => 'is ok']
+                IResponse::FIELD__ID => 'id',
+                IResponse::FIELD__VERSION => IResponse::VERSION_CURRENT,
+                IResponse::FIELD__RESULT => ['test' => 'is ok']
             ],
             $response
         );
@@ -64,12 +65,12 @@ class TraitsTest extends TestCase
         $response = $this->getJsonRpcResponse($item->errorResponse('id', 'test', 400, ['is ok']));
         $this->assertEquals(
             [
-                IResponse::RESPONSE__ID => 'id',
-                IResponse::RESPONSE__VERSION => IResponse::VERSION_CURRENT,
-                IResponse::RESPONSE__ERROR => [
-                    IResponse::RESPONSE__ERROR_CODE => 400,
-                    IResponse::RESPONSE__ERROR_DATA => ['is ok'],
-                    IResponse::RESPONSE__ERROR_MESSAGE => 'test'
+                IResponse::FIELD__ID => 'id',
+                IResponse::FIELD__VERSION => IResponse::VERSION_CURRENT,
+                IResponse::FIELD__ERROR => [
+                    IError::FIELD___CODE => 400,
+                    IError::FIELD___DATA => ['is ok'],
+                    IError::FIELD___MESSAGE => 'test'
                 ]
             ],
             $response
