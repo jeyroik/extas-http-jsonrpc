@@ -62,6 +62,7 @@ class TraitsTest extends TestCase
             $response
         );
 
+        $item[IHasJsonRpcResponse::FIELD__PSR_RESPONSE] = $this->getPsrResponse();
         $response = $this->getJsonRpcResponse($item->errorResponse('id', 'test', 400, ['is ok']));
         $this->assertEquals(
             [
