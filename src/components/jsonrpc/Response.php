@@ -39,6 +39,14 @@ class Response extends Item implements IResponse
     }
 
     /**
+     * @return array
+     */
+    public function getResult(): array
+    {
+        return $this->config[static::FIELD__RESULT] ?? [];
+    }
+
+    /**
      * @param IError $error
      * @return $this|IResponse
      */

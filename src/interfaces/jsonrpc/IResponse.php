@@ -39,6 +39,11 @@ interface IResponse extends IItem
     public function getError(): IError;
 
     /**
+     * @return array
+     */
+    public function getResult(): array;
+
+    /**
      * @param IError $error
      * @return IResponse
      */
