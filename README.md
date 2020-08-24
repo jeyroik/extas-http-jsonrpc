@@ -10,3 +10,41 @@
 # Описание
 
 Пакет содержит базовые модели для работы с JSON RPC.
+
+# Использование
+
+```php
+use extas\interfaces\http\IHasJsonRpcRequest;
+use extas\components\Item;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
+use extas\interfaces\http\IHasJsonRpcResponse;
+use extas\components\http\THasJsonRpcRequest;
+use extas\components\http\THasJsonRpcResponse;
+
+/**
+ * @var RequestInterface $request
+ * @var ResponseInterface $response
+ */
+
+$item = new class ([
+    IHasJsonRpcRequest::FIELD__PSR_REQUEST => $request,
+    IHasJsonRpcResponse::FIELD__PSR_RESPONSE => $response
+]) extends Item {
+    use THasJsonRpcResponse;
+    use THasJsonRpcRequest;
+    
+    protected function getSubjectForExtension() : string{
+        return 'test';
+    }
+};
+
+print_r(
+    $item->successResponse(
+        $item->getJsonRpcRequest()->getId(),
+        [
+            //some data
+        ]
+    )
+);
+```
