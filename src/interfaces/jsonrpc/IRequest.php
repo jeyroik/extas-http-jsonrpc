@@ -13,12 +13,12 @@ use Psr\Http\Message\RequestInterface;
  */
 interface IRequest extends IItem, IHasId
 {
-    const SUBJECT = 'extas.jsonrpc.request';
+    public const SUBJECT = 'extas.jsonrpc.request';
 
-    const FIELD__METHOD = 'method';
-    const FIELD__PARAMS = 'params';
-    const FIELD__PARAMS_FILTER = 'filter';
-    const FIELD__PARAMS_DATA = 'data';
+    public const FIELD__METHOD = 'method';
+    public const FIELD__PARAMS = 'params';
+    public const FIELD__PARAMS_FILTER = 'filter';
+    public const FIELD__PARAMS_DATA = 'data';
 
     /**
      * @param RequestInterface $request
