@@ -80,7 +80,8 @@ trait THasJsonRpcResponse
             $plugin($jsonRpcResponse);
         }
 
-        $response = $this->getPsrResponse();
+        $response = new \Slim\Psr7\Response();
+        $response = $response->withHeader('Content-type', 'application/json')->withStatus(200);
         $response->getBody()->write($jsonRpcResponse->__toJson());
 
         return $response;
